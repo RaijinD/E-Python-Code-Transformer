@@ -76,7 +76,7 @@ class Parser:
         self._position += 1
         return current
 
-    def match(self, kind: SyntaxKind):
+    def match(self, kind: SyntaxKind) -> Token:
         if (self.current().kind == kind):
             return self.nextToken()
         self.diagnostics.append(
@@ -112,8 +112,3 @@ class Parser:
             left = BinaryExpressionNode(left, operatorToken, right)
         return left
 
-    def parseExpressionX(self):
-        left = self.parsePrimaryExpression()
-
-        while True:
-            precedence = 1
